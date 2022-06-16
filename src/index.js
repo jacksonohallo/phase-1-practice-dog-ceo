@@ -2,11 +2,11 @@ console.log('%c HI', 'color: firebrick')
 let breeds = [];
 
 document.addEventListener('DOMContentLoaded', function () {
-  loadImages();
-  loadBreedOptions();
+  showImages();
+  showBreedOptions();
 });
 
-function loadImages() {
+function showImages() {
   const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
   fetch(imgUrl)
     .then(res=> res.json())
@@ -22,19 +22,19 @@ function addImage(dogPicUrl) {
   container.appendChild(newImageEl);
 }
 
-function loadBreedOptions() {
+function showBreedOptions() {
   const breedUrl = 'https://dog.ceo/api/breeds/list/all'
   fetch(breedUrl)
     .then(res => res.json())
     .then(results => {
 
       breeds = Object.keys(results.message);
-      updateBreedList(breeds);
+      changeBreedList(breeds);
       addBreedSelectListener();
     });
 }
 
-function updateBreedList(breeds) {
+function changeBreedList(breeds) {
   let ul = document.querySelector('#dog-breeds');
   removeChildren(ul);
   breeds.forEach(breed => addBreed(breed));
